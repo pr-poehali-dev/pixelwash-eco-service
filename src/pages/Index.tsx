@@ -2,10 +2,24 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [activeService, setActiveService] = useState<number | null>(null);
+  const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
+  const { toast } = useToast();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: 'Спасибо за обращение!',
+      description: 'Мы свяжемся с вами в ближайшее время.',
+    });
+    setFormData({ name: '', phone: '', message: '' });
+  };
 
   const services = [
     {
@@ -67,6 +81,7 @@ const Index = () => {
           </div>
           <nav className="hidden md:flex gap-8">
             <a href="#services" className="text-gray-700 hover:text-purple transition-colors">Услуги</a>
+            <a href="#team" className="text-gray-700 hover:text-purple transition-colors">Команда</a>
             <a href="#faq" className="text-gray-700 hover:text-purple transition-colors">FAQ</a>
             <a href="#contacts" className="text-gray-700 hover:text-purple transition-colors">Контакты</a>
           </nav>
@@ -162,6 +177,62 @@ const Index = () => {
         </div>
       </section>
 
+      <section id="team" className="py-20 px-4 bg-white/50">
+        <div className="container mx-auto">
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Наша команда</h2>
+            <p className="text-xl text-gray-600">Профессионалы, которые заботятся о вашем авто</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="border-2 hover:border-purple transition-all duration-300 hover:shadow-xl">
+              <CardContent className="pt-6">
+                <div className="relative mb-6">
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple/10 to-teal/10 rounded-2xl blur-xl"></div>
+                  <img 
+                    src="https://cdn.poehali.dev/projects/b3a34a23-c9fb-4f95-85ea-96989c0ed03f/files/487b3d87-7f2a-4f28-a28d-af2da341c963.jpg" 
+                    alt="Алексей Морозов" 
+                    className="relative w-full h-64 object-cover rounded-2xl"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold mb-2">Алексей Морозов</h3>
+                <p className="text-purple font-semibold mb-3">Руководитель сети станций</p>
+                <p className="text-gray-600 text-sm">15 лет в индустрии автомоек. Внедрил ИИ-технологии во все процессы обслуживания клиентов.</p>
+              </CardContent>
+            </Card>
+            <Card className="border-2 hover:border-purple transition-all duration-300 hover:shadow-xl">
+              <CardContent className="pt-6">
+                <div className="relative mb-6">
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple/10 to-teal/10 rounded-2xl blur-xl"></div>
+                  <img 
+                    src="https://cdn.poehali.dev/projects/b3a34a23-c9fb-4f95-85ea-96989c0ed03f/files/8ff269b5-ffe8-4809-9419-81435cf94d2b.jpg" 
+                    alt="Мария Соколова" 
+                    className="relative w-full h-64 object-cover rounded-2xl"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold mb-2">Мария Соколова</h3>
+                <p className="text-teal font-semibold mb-3">Главный технолог</p>
+                <p className="text-gray-600 text-sm">Эксперт по автохимии с международными сертификатами. Подбирает безопасные эко-составы для каждого типа покрытия.</p>
+              </CardContent>
+            </Card>
+            <Card className="border-2 hover:border-purple transition-all duration-300 hover:shadow-xl">
+              <CardContent className="pt-6">
+                <div className="relative mb-6">
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple/10 to-teal/10 rounded-2xl blur-xl"></div>
+                  <img 
+                    src="https://cdn.poehali.dev/projects/b3a34a23-c9fb-4f95-85ea-96989c0ed03f/files/83132bde-91bd-4574-93ae-eef395847970.jpg" 
+                    alt="Дмитрий Волков" 
+                    className="relative w-full h-64 object-cover rounded-2xl"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold mb-2">Дмитрий Волков</h3>
+                <p className="text-purple-dark font-semibold mb-3">Ведущий инженер ИИ-систем</p>
+                <p className="text-gray-600 text-sm">Разработчик нейросети для анализа загрязнений. Оптимизирует алгоритмы для максимальной точности.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       <section id="faq" className="py-20 px-4">
         <div className="container mx-auto max-w-3xl">
           <div className="text-center mb-16 animate-fade-in">
@@ -187,37 +258,143 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contacts" className="py-20 px-4 bg-gradient-to-br from-purple to-teal text-white">
-        <div className="container mx-auto text-center">
-          <div className="max-w-2xl mx-auto space-y-8 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold">Начните с PixelWash сегодня</h2>
-            <p className="text-xl opacity-90">
-              Скачайте приложение и получите первую мойку со скидкой 50%
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-              <Button size="lg" variant="secondary" className="bg-white text-purple hover:bg-gray-100 w-full sm:w-auto">
-                <Icon name="Apple" size={20} className="mr-2" />
-                App Store
-              </Button>
-              <Button size="lg" variant="secondary" className="bg-white text-teal hover:bg-gray-100 w-full sm:w-auto">
-                <Icon name="Smartphone" size={20} className="mr-2" />
-                Google Play
-              </Button>
+      <section id="contacts" className="py-20 px-4 bg-white/50">
+        <div className="container mx-auto">
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Контакты и локации</h2>
+            <p className="text-xl text-gray-600">Найдите ближайшую станцию PixelWash</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-12">
+            <div className="space-y-6">
+              <Card className="border-2 border-purple-100">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Icon name="MapPin" size={24} className="text-purple" />
+                    Наши станции в Москве
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="p-4 bg-purple-50 rounded-lg">
+                    <h4 className="font-semibold mb-1">ЦАО - Центр</h4>
+                    <p className="text-sm text-gray-600">ул. Тверская, 15 • ул. Мясницкая, 42 • Садовое кольцо, 8</p>
+                  </div>
+                  <div className="p-4 bg-teal-50 rounded-lg">
+                    <h4 className="font-semibold mb-1">СВАО - Северо-Восточный</h4>
+                    <p className="text-sm text-gray-600">просп. Мира, 128 • ул. Ярославская, 56</p>
+                  </div>
+                  <div className="p-4 bg-purple-50 rounded-lg">
+                    <h4 className="font-semibold mb-1">СЗАО - Северо-Западный</h4>
+                    <p className="text-sm text-gray-600">Ленинградское ш., 94 • ул. Свободы, 23</p>
+                  </div>
+                  <div className="p-4 bg-teal-50 rounded-lg">
+                    <h4 className="font-semibold mb-1">ЮАО и ЮВАО - Юг</h4>
+                    <p className="text-sm text-gray-600">Каширское ш., 67 • Волгоградский просп., 112 • ул. Люблинская, 45 • просп. Андропова, 89</p>
+                  </div>
+                  <div className="p-4 bg-purple-50 rounded-lg">
+                    <h4 className="font-semibold mb-1">ЗАО - Западный</h4>
+                    <p className="text-sm text-gray-600">Кутузовский просп., 48</p>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="border-2 border-teal-100">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Icon name="Phone" size={24} className="text-teal" />
+                    Связаться с нами
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <Icon name="Mail" size={20} className="text-purple" />
+                    <a href="mailto:info@pixelwash.ru" className="text-gray-700 hover:text-purple transition-colors">info@pixelwash.ru</a>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Icon name="Phone" size={20} className="text-teal" />
+                    <a href="tel:+74951234567" className="text-gray-700 hover:text-teal transition-colors">+7 (495) 123-45-67</a>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Icon name="Clock" size={20} className="text-purple" />
+                    <span className="text-gray-700">Круглосуточно, 24/7</span>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
-            <div className="pt-8 space-y-4">
-              <div className="flex items-center justify-center gap-2">
-                <Icon name="Mail" size={20} />
-                <a href="mailto:info@pixelwash.ru" className="hover:underline">info@pixelwash.ru</a>
-              </div>
-              <div className="flex items-center justify-center gap-2">
-                <Icon name="Phone" size={20} />
-                <a href="tel:+74951234567" className="hover:underline">+7 (495) 123-45-67</a>
-              </div>
-              <div className="flex items-center justify-center gap-2">
-                <Icon name="MapPin" size={20} />
-                <span>Москва, 12 станций по всему городу</span>
+            <div>
+              <div className="relative h-full min-h-[500px] rounded-2xl overflow-hidden border-2 border-gray-200">
+                <iframe 
+                  src="https://yandex.ru/map-widget/v1/?um=constructor%3A64d4c18b6b1ab5ef8c6f0c3d5f5e8c4f3b5c8b6b1ab5ef8c6f0c3d5f5e8c4f&amp;source=constructor" 
+                  width="100%" 
+                  height="100%" 
+                  frameBorder="0"
+                  className="absolute inset-0"
+                ></iframe>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-4 bg-gradient-to-br from-purple to-teal text-white">
+        <div className="container mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6 animate-fade-in">
+              <h2 className="text-4xl md:text-5xl font-bold">Форма обратной связи</h2>
+              <p className="text-xl opacity-90">
+                Оставьте заявку и получите первую мойку со скидкой 50%
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Button size="lg" variant="secondary" className="bg-white text-purple hover:bg-gray-100 w-full sm:w-auto">
+                  <Icon name="Apple" size={20} className="mr-2" />
+                  App Store
+                </Button>
+                <Button size="lg" variant="secondary" className="bg-white text-teal hover:bg-gray-100 w-full sm:w-auto">
+                  <Icon name="Smartphone" size={20} className="mr-2" />
+                  Google Play
+                </Button>
+              </div>
+            </div>
+            <Card className="border-0 shadow-2xl">
+              <CardHeader>
+                <CardTitle className="text-2xl">Свяжитесь с нами</CardTitle>
+                <CardDescription>Заполните форму и мы перезвоним в течение 15 минут</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <Input 
+                      placeholder="Ваше имя" 
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      required
+                      className="bg-white"
+                    />
+                  </div>
+                  <div>
+                    <Input 
+                      placeholder="Телефон" 
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      required
+                      className="bg-white"
+                    />
+                  </div>
+                  <div>
+                    <Textarea 
+                      placeholder="Ваше сообщение" 
+                      value={formData.message}
+                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      rows={4}
+                      className="bg-white"
+                    />
+                  </div>
+                  <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-purple to-teal hover:opacity-90">
+                    <Icon name="Send" size={20} className="mr-2" />
+                    Отправить заявку
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
