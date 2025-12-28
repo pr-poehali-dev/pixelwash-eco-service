@@ -55,10 +55,12 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-white via-purple-50 to-teal-50">
       <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-purple-100">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple to-teal flex items-center justify-center">
-              <Icon name="Droplets" size={24} className="text-white" />
-            </div>
+          <div className="flex items-center gap-3">
+            <img 
+              src="https://cdn.poehali.dev/projects/b3a34a23-c9fb-4f95-85ea-96989c0ed03f/files/7138223c-9b5a-482a-9662-3549043f6733.jpg" 
+              alt="PixelWash logo" 
+              className="w-12 h-12 object-contain"
+            />
             <span className="text-2xl font-bold bg-gradient-to-r from-purple to-teal bg-clip-text text-transparent">
               PixelWash
             </span>
@@ -223,9 +225,11 @@ const Index = () => {
       <footer className="bg-dark text-white py-8 px-4">
         <div className="container mx-auto text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple to-teal flex items-center justify-center">
-              <Icon name="Droplets" size={20} className="text-white" />
-            </div>
+            <img 
+              src="https://cdn.poehali.dev/projects/b3a34a23-c9fb-4f95-85ea-96989c0ed03f/files/7138223c-9b5a-482a-9662-3549043f6733.jpg" 
+              alt="PixelWash logo" 
+              className="w-10 h-10 object-contain"
+            />
             <span className="text-xl font-bold">PixelWash</span>
           </div>
           <p className="text-gray-400 text-sm">
